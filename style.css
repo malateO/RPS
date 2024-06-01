@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 2rem;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  position: relative;
+}
+
+button {
+  padding: 4px;
+}
+
+h3,
+.option__btn {
+  position: absolute;
+}
+
+h3 {
+  top: 7rem;
+}
+
+.option__btn {
+  top: 10rem;
+}
+
+.computer__response {
+  border: 1px solid black;
+  width: 50px;
+  height: 50px;
+}
