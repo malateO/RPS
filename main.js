@@ -63,6 +63,28 @@ const paperCon = (machine) => {
   theDecision.textContent = `The computer pick ${machineHand}, ${result}`;
 };
 
+const scissorCon = (machine) => {
+  let result = "";
+  const yourChoiceP = document.createElement("p");
+  const computerResP = document.createElement("p");
+
+  if (machine === "rock") {
+    result = "you lose";
+  } else if (machine === "paper") {
+    result = "you win";
+  } else {
+    result = "its a tie";
+  }
+
+  computerResP.textContent = `${machineHand}`;
+  computerRes.innerHTML = "";
+  computerRes.append(computerResP);
+  yourChoiceP.textContent = "you pick Scissor";
+  yourChoice.innerHTML = "";
+  yourChoice.append(yourChoiceP);
+  theDecision.textContent = `The computer pick ${machineHand}, ${result}`;
+};
+
 rockHand.addEventListener("click", () => {
   machineHand = computerHand(randomHand());
   rockCon(machineHand);
@@ -71,4 +93,9 @@ rockHand.addEventListener("click", () => {
 paperHand.addEventListener("click", () => {
   machineHand = computerHand(randomHand());
   paperCon(machineHand);
+});
+
+scissorHand.addEventListener("click", () => {
+  machineHand = computerHand(randomHand());
+  scissorCon(machineHand);
 });
