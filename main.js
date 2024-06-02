@@ -20,6 +20,7 @@ const computerHand = (randomNum) => {
 };
 
 let machineHand = computerHand(randomHand());
+
 const rockCon = (machine) => {
   let result = "";
   const yourChoiceP = document.createElement("p");
@@ -40,7 +41,34 @@ const rockCon = (machine) => {
   theDecision.textContent = `The computer pick ${machineHand}, ${result}`;
 };
 
+const paperCon = (machine) => {
+  let result = "";
+  const yourChoiceP = document.createElement("p");
+  const computerResP = document.createElement("p");
+
+  if (machine === "rock") {
+    result = "you win";
+  } else if (machine === "paper") {
+    result = "its a tie";
+  } else {
+    result = "you lose";
+  }
+
+  computerResP.textContent = `${machineHand}`;
+  computerRes.innerHTML = "";
+  computerRes.append(computerResP);
+  yourChoiceP.textContent = "you pick Paper";
+  yourChoice.innerHTML = "";
+  yourChoice.append(yourChoiceP);
+  theDecision.textContent = `The computer pick ${machineHand}, ${result}`;
+};
+
 rockHand.addEventListener("click", () => {
   machineHand = computerHand(randomHand());
   rockCon(machineHand);
+});
+
+paperHand.addEventListener("click", () => {
+  machineHand = computerHand(randomHand());
+  paperCon(machineHand);
 });
