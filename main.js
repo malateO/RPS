@@ -8,9 +8,17 @@ const pScore = document.getElementById("pscore");
 const cScore = document.getElementById("cscore");
 const scoreBoardEl = document.querySelector(".score-board");
 const reset = document.getElementById("reset");
+const playerWins = document.getElementById("player-wins");
+const playerLoses = document.getElementById("player-loses");
+const playerTies = document.getElementById("player-ties");
 
 let playerScore = 0;
 let computerScore = 0;
+let playerStats = {
+  wins: 0,
+  lose: 0,
+  tie: 0,
+};
 
 const randomHand = () => Math.floor(Math.random() * 3) + 1;
 
@@ -34,11 +42,14 @@ const rockCon = (machine) => {
   const computerResP = document.createElement("p");
   if (machine === "rock") {
     result = "its a tie";
+    playerTies.textContent = `${(playerStats.tie += 1)}`;
   } else if (machine === "paper") {
     result = "you lose";
+    playerLoses.textContent = `${(playerStats.lose += 1)}`;
     cScore.innerHTML = `Computer Score: ${(computerScore += 1)}`;
   } else {
     result = "you win";
+    playerWins.textContent = `${(playerStats.wins += 1)}`;
     pScore.innerHTML = `Player Score: ${(playerScore += 1)}`;
   }
   computerResP.textContent = `${machineHand}`;
@@ -59,11 +70,14 @@ const paperCon = (machine) => {
 
   if (machine === "rock") {
     result = "you win";
+    playerWins.textContent = `${(playerStats.wins += 1)}`;
     pScore.innerHTML = `Player Score: ${(playerScore += 1)}`;
   } else if (machine === "paper") {
     result = "its a tie";
+    playerTies.textContent = `${(playerStats.tie += 1)}`;
   } else {
     result = "you lose";
+    playerLoses.textContent = `${(playerStats.lose += 1)}`;
     cScore.innerHTML = `Computer Score: ${(computerScore += 1)}`;
   }
 
@@ -85,12 +99,15 @@ const scissorCon = (machine) => {
 
   if (machine === "rock") {
     result = "you lose";
+    playerLoses.textContent = `${(playerStats.lose += 1)}`;
     cScore.innerHTML = `Computer Score: ${(computerScore += 1)}`;
   } else if (machine === "paper") {
     result = "you win";
+    playerWins.textContent = `${(playerStats.wins += 1)}`;
     pScore.innerHTML = `Player Score: ${(playerScore += 1)}`;
   } else {
     result = "its a tie";
+    playerTies.textContent = `${(playerStats.tie += 1)}`;
   }
 
   computerResP.textContent = `${machineHand}`;
@@ -108,8 +125,10 @@ const resetAll = () => {
   computerRes.innerHTML = "";
   yourChoice.innerHTML = "";
   theDecision.textContent = "";
-  cScore.innerHTML = "Player Score: 0";
-  pScore.innerHTML = "Computer Score: 0";
+  cScore.innerHTML = "Player Score:";
+  pScore.innerHTML = "Computer Score:";
+  computerScore = 0;
+  playerScore = 0;
 };
 
 rockHand.addEventListener("click", () => {
