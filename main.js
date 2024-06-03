@@ -14,11 +14,11 @@ const playerTies = document.getElementById("player-ties");
 
 let playerScore = 0;
 let computerScore = 0;
-let playerStats = {
-  wins: 0,
-  lose: 0,
-  tie: 0,
-};
+let playerStats = JSON.parse(localStorage.getItem("score"));
+
+playerWins.textContent = `${playerStats.wins}`;
+playerLoses.textContent = `${playerStats.lose}`;
+playerTies.textContent = `${playerStats.tie}`;
 
 const randomHand = () => Math.floor(Math.random() * 3) + 1;
 
@@ -60,6 +60,10 @@ const rockCon = (machine) => {
   yourChoice.appendChild(yourChoiceP);
   theDecision.textContent = `The computer pick ${machineHand}, ${result}`;
 
+  localStorage.setItem("score", JSON.stringify(playerStats));
+
+  console.log(playerStats.wins);
+
   return result;
 };
 
@@ -88,6 +92,7 @@ const paperCon = (machine) => {
   yourChoice.innerHTML = "";
   yourChoice.append(yourChoiceP);
   theDecision.textContent = `The computer pick ${machineHand}, ${result}`;
+  console.log(playerStats.wins);
 
   return result;
 };
@@ -117,6 +122,7 @@ const scissorCon = (machine) => {
   yourChoice.innerHTML = "";
   yourChoice.append(yourChoiceP);
   theDecision.textContent = `The computer pick ${machineHand}, ${result}`;
+  console.log(playerStats.wins);
 
   return result;
 };

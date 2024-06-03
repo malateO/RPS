@@ -25,11 +25,11 @@ h3,
 }
 
 h3 {
-  top: 7rem;
+  top: 4rem;
 }
 
 .option__btn {
-  top: 10rem;
+  top: 6rem;
 }
 
 .computer__response {
@@ -42,4 +42,7 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.your__choice {
 }
