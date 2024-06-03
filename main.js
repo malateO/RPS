@@ -11,6 +11,7 @@ const reset = document.getElementById("reset");
 const playerWins = document.getElementById("player-wins");
 const playerLoses = document.getElementById("player-loses");
 const playerTies = document.getElementById("player-ties");
+const restore = document.getElementById("restore");
 
 let playerScore = 0;
 let computerScore = 0;
@@ -137,6 +138,20 @@ const resetAll = () => {
   playerScore = 0;
 };
 
+/*Pending*/
+/*
+const restoreAll = () => {
+  localStorage.removeItem("playerStats");
+  if (!playerStats) {
+    playerStats = {
+      wins: 0,
+      lose: 0,
+      tie: 0,
+    };
+  }
+};
+*/
+
 rockHand.addEventListener("click", () => {
   machineHand = computerHand(randomHand());
   rockCon(machineHand);
@@ -153,3 +168,5 @@ scissorHand.addEventListener("click", () => {
 });
 
 reset.addEventListener("click", resetAll);
+
+restore.addEventListener("click", restoreAll);
