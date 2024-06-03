@@ -7,6 +7,7 @@ const theDecision = document.querySelector(".result");
 const pScore = document.getElementById("pscore");
 const cScore = document.getElementById("cscore");
 const scoreBoardEl = document.querySelector(".score-board");
+const reset = document.getElementById("reset");
 
 let playerScore = 0;
 let computerScore = 0;
@@ -103,6 +104,14 @@ const scissorCon = (machine) => {
   return result;
 };
 
+const resetAll = () => {
+  computerRes.innerHTML = "";
+  yourChoice.innerHTML = "";
+  theDecision.textContent = "";
+  cScore.innerHTML = "Player Score: 0";
+  pScore.innerHTML = "Computer Score: 0";
+};
+
 rockHand.addEventListener("click", () => {
   machineHand = computerHand(randomHand());
   rockCon(machineHand);
@@ -117,3 +126,5 @@ scissorHand.addEventListener("click", () => {
   machineHand = computerHand(randomHand());
   scissorCon(machineHand);
 });
+
+reset.addEventListener("click", resetAll);
