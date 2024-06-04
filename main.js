@@ -16,7 +16,24 @@ const restore = document.getElementById("restore");
 let playerMove = [rockHand, paperHand, scissorHand];
 let playerScore = 0;
 let computerScore = 0;
-// let playerStats = JSON.parse(localStorage.getItem("playerStats"));
+// let playerStats = {
+//   win: 0,
+//   lose: 0,
+//   tie: 0,
+// };
+let playerStats = JSON.parse(localStorage.getItem("playerStat")) || {
+  win: 0,
+  lose: 0,
+  tie: 0,
+};
+
+// if (!playerStats) {
+//   playerStats = {
+//     win: 0,
+//     lose: 0,
+//     tie: 0,
+//   };
+// }
 
 const randomHand = () => Math.floor(Math.random() * 3) + 1;
 
@@ -42,37 +59,45 @@ const gameResult = (machine) => {
   if (playerMove[0].id === "rock") {
     if (machine === "rock") {
       result = "its a tie";
-      console.log("tie");
+      playerTies.textContent = `${(playerStats.tie += 1)}`;
     } else if (machine === "paper") {
       result = "you lose";
-      console.log("lose");
       cScore.innerHTML = `Computer Score: ${(computerScore += 1)}`;
+      playerLoses.textContent = `${(playerStats.lose += 1)}`;
     } else {
       result = "you win";
-      console.log("win");
       pScore.innerHTML = `Player Score: ${(playerScore += 1)}`;
+      playerWins.textContent = `${(playerStats.win += 1)}`;
     }
   } else if (playerMove[1].id === "paper") {
     if (machine === "rock") {
       result = "you win";
       pScore.innerHTML = `Player Score: ${(playerScore += 1)}`;
+      playerWins.textContent = `${(playerStats.win += 1)}`;
     } else if (machine === "paper") {
       result = "its a tie";
+      playerTies.textContent = `${(playerStats.tie += 1)}`;
     } else {
       result = "you lose";
       cScore.innerHTML = `Computer Score: ${(computerScore += 1)}`;
+      playerLoses.textContent = `${(playerStats.lose += 1)}`;
     }
   } else if (playerMove[2].id === "scissor") {
     if (machine === "rock") {
       result = "you lose";
       cScore.innerHTML = `Computer Score: ${(computerScore += 1)}`;
+      playerLoses.textContent = `${(playerStats.lose += 1)}`;
     } else if (machine === "paper") {
       result = "you win";
       pScore.innerHTML = `Player Score: ${(playerScore += 1)}`;
+      playerWins.textContent = `${(playerStats.win += 1)}`;
     } else {
       result = "its a tie";
+      playerTies.textContent = `${(playerStats.tie += 1)}`;
     }
   }
+
+  localStorage.setItem("playerStat", JSON.stringify(playerStats));
 
   computerResP.textContent = `${machineHand}`;
   computerRes.innerHTML = "";
@@ -95,7 +120,13 @@ const resetAll = () => {
 };
 
 const restoreAll = () => {
-  localStorage.removeItem("playerStats");
+  playerStats.win = 0;
+  playerStats.lose = 0;
+  playerStats.tie = 0;
+  playerWins.textContent = `${playerStats.win}`;
+  playerTies.textContent = `${playerStats.tie}`;
+  playerLoses.textContent = `${playerStats.lose}`;
+  localStorage.removeItem("playerStat");
 };
 
 rockHand.addEventListener("click", () => {
