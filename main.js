@@ -15,11 +15,7 @@ const restore = document.getElementById("restore");
 
 let playerScore = 0;
 let computerScore = 0;
-let playerStats = JSON.parse(localStorage.getItem("score"));
-
-playerWins.textContent = `${playerStats.wins}`;
-playerLoses.textContent = `${playerStats.lose}`;
-playerTies.textContent = `${playerStats.tie}`;
+let playerStats = JSON.parse(localStorage.getItem("playerStats"));
 
 const randomHand = () => Math.floor(Math.random() * 3) + 1;
 
@@ -43,14 +39,13 @@ const rockCon = (machine) => {
   const computerResP = document.createElement("p");
   if (machine === "rock") {
     result = "its a tie";
-    playerTies.textContent = `${(playerStats.tie += 1)}`;
   } else if (machine === "paper") {
     result = "you lose";
-    playerLoses.textContent = `${(playerStats.lose += 1)}`;
+
     cScore.innerHTML = `Computer Score: ${(computerScore += 1)}`;
   } else {
     result = "you win";
-    playerWins.textContent = `${(playerStats.wins += 1)}`;
+
     pScore.innerHTML = `Player Score: ${(playerScore += 1)}`;
   }
   computerResP.textContent = `${machineHand}`;
@@ -60,10 +55,6 @@ const rockCon = (machine) => {
   yourChoice.innerHTML = "";
   yourChoice.appendChild(yourChoiceP);
   theDecision.textContent = `The computer pick ${machineHand}, ${result}`;
-
-  localStorage.setItem("score", JSON.stringify(playerStats));
-
-  console.log(playerStats.wins);
 
   return result;
 };
@@ -75,14 +66,13 @@ const paperCon = (machine) => {
 
   if (machine === "rock") {
     result = "you win";
-    playerWins.textContent = `${(playerStats.wins += 1)}`;
+
     pScore.innerHTML = `Player Score: ${(playerScore += 1)}`;
   } else if (machine === "paper") {
     result = "its a tie";
-    playerTies.textContent = `${(playerStats.tie += 1)}`;
   } else {
     result = "you lose";
-    playerLoses.textContent = `${(playerStats.lose += 1)}`;
+
     cScore.innerHTML = `Computer Score: ${(computerScore += 1)}`;
   }
 
@@ -93,7 +83,6 @@ const paperCon = (machine) => {
   yourChoice.innerHTML = "";
   yourChoice.append(yourChoiceP);
   theDecision.textContent = `The computer pick ${machineHand}, ${result}`;
-  console.log(playerStats.wins);
 
   return result;
 };
@@ -105,15 +94,14 @@ const scissorCon = (machine) => {
 
   if (machine === "rock") {
     result = "you lose";
-    playerLoses.textContent = `${(playerStats.lose += 1)}`;
+
     cScore.innerHTML = `Computer Score: ${(computerScore += 1)}`;
   } else if (machine === "paper") {
     result = "you win";
-    playerWins.textContent = `${(playerStats.wins += 1)}`;
+
     pScore.innerHTML = `Player Score: ${(playerScore += 1)}`;
   } else {
     result = "its a tie";
-    playerTies.textContent = `${(playerStats.tie += 1)}`;
   }
 
   computerResP.textContent = `${machineHand}`;
@@ -123,7 +111,6 @@ const scissorCon = (machine) => {
   yourChoice.innerHTML = "";
   yourChoice.append(yourChoiceP);
   theDecision.textContent = `The computer pick ${machineHand}, ${result}`;
-  console.log(playerStats.wins);
 
   return result;
 };
@@ -138,19 +125,9 @@ const resetAll = () => {
   playerScore = 0;
 };
 
-/*Pending*/
-/*
 const restoreAll = () => {
   localStorage.removeItem("playerStats");
-  if (!playerStats) {
-    playerStats = {
-      wins: 0,
-      lose: 0,
-      tie: 0,
-    };
-  }
 };
-*/
 
 rockHand.addEventListener("click", () => {
   machineHand = computerHand(randomHand());
