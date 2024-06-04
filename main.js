@@ -27,6 +27,10 @@ let playerStats = JSON.parse(localStorage.getItem("playerStat")) || {
   tie: 0,
 };
 
+playerWins.textContent = `${playerStats.win}`;
+playerTies.textContent = `${playerStats.tie}`;
+playerLoses.textContent = `${playerStats.lose}`;
+
 // if (!playerStats) {
 //   playerStats = {
 //     win: 0,
