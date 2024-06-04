@@ -13,9 +13,10 @@ const playerLoses = document.getElementById("player-loses");
 const playerTies = document.getElementById("player-ties");
 const restore = document.getElementById("restore");
 
+let playerMove = [rockHand, paperHand, scissorHand];
 let playerScore = 0;
 let computerScore = 0;
-let playerStats = JSON.parse(localStorage.getItem("playerStats"));
+// let playerStats = JSON.parse(localStorage.getItem("playerStats"));
 
 const randomHand = () => Math.floor(Math.random() * 3) + 1;
 
@@ -33,21 +34,46 @@ const computerHand = (randomNum) => {
 
 let machineHand = computerHand(randomHand());
 
-const rockCon = (machine) => {
+const gameResult = (machine) => {
   let result = "";
   const yourChoiceP = document.createElement("p");
   const computerResP = document.createElement("p");
-  if (machine === "rock") {
-    result = "its a tie";
-  } else if (machine === "paper") {
-    result = "you lose";
 
-    cScore.innerHTML = `Computer Score: ${(computerScore += 1)}`;
-  } else {
-    result = "you win";
-
-    pScore.innerHTML = `Player Score: ${(playerScore += 1)}`;
+  if (playerMove[0].id === "rock") {
+    if (machine === "rock") {
+      result = "its a tie";
+      console.log("tie");
+    } else if (machine === "paper") {
+      result = "you lose";
+      console.log("lose");
+      cScore.innerHTML = `Computer Score: ${(computerScore += 1)}`;
+    } else {
+      result = "you win";
+      console.log("win");
+      pScore.innerHTML = `Player Score: ${(playerScore += 1)}`;
+    }
+  } else if (playerMove[1].id === "paper") {
+    if (machine === "rock") {
+      result = "you win";
+      pScore.innerHTML = `Player Score: ${(playerScore += 1)}`;
+    } else if (machine === "paper") {
+      result = "its a tie";
+    } else {
+      result = "you lose";
+      cScore.innerHTML = `Computer Score: ${(computerScore += 1)}`;
+    }
+  } else if (playerMove[2].id === "scissor") {
+    if (machine === "rock") {
+      result = "you lose";
+      cScore.innerHTML = `Computer Score: ${(computerScore += 1)}`;
+    } else if (machine === "paper") {
+      result = "you win";
+      pScore.innerHTML = `Player Score: ${(playerScore += 1)}`;
+    } else {
+      result = "its a tie";
+    }
   }
+
   computerResP.textContent = `${machineHand}`;
   computerRes.innerHTML = "";
   computerRes.appendChild(computerResP);
@@ -55,63 +81,6 @@ const rockCon = (machine) => {
   yourChoice.innerHTML = "";
   yourChoice.appendChild(yourChoiceP);
   theDecision.textContent = `The computer pick ${machineHand}, ${result}`;
-
-  return result;
-};
-
-const paperCon = (machine) => {
-  let result = "";
-  const yourChoiceP = document.createElement("p");
-  const computerResP = document.createElement("p");
-
-  if (machine === "rock") {
-    result = "you win";
-
-    pScore.innerHTML = `Player Score: ${(playerScore += 1)}`;
-  } else if (machine === "paper") {
-    result = "its a tie";
-  } else {
-    result = "you lose";
-
-    cScore.innerHTML = `Computer Score: ${(computerScore += 1)}`;
-  }
-
-  computerResP.textContent = `${machineHand}`;
-  computerRes.innerHTML = "";
-  computerRes.append(computerResP);
-  yourChoiceP.textContent = "you pick Paper";
-  yourChoice.innerHTML = "";
-  yourChoice.append(yourChoiceP);
-  theDecision.textContent = `The computer pick ${machineHand}, ${result}`;
-
-  return result;
-};
-
-const scissorCon = (machine) => {
-  let result = "";
-  const yourChoiceP = document.createElement("p");
-  const computerResP = document.createElement("p");
-
-  if (machine === "rock") {
-    result = "you lose";
-
-    cScore.innerHTML = `Computer Score: ${(computerScore += 1)}`;
-  } else if (machine === "paper") {
-    result = "you win";
-
-    pScore.innerHTML = `Player Score: ${(playerScore += 1)}`;
-  } else {
-    result = "its a tie";
-  }
-
-  computerResP.textContent = `${machineHand}`;
-  computerRes.innerHTML = "";
-  computerRes.append(computerResP);
-  yourChoiceP.textContent = "you pick Scissor";
-  yourChoice.innerHTML = "";
-  yourChoice.append(yourChoiceP);
-  theDecision.textContent = `The computer pick ${machineHand}, ${result}`;
-
   return result;
 };
 
@@ -131,17 +100,17 @@ const restoreAll = () => {
 
 rockHand.addEventListener("click", () => {
   machineHand = computerHand(randomHand());
-  rockCon(machineHand);
+  gameResult(machineHand);
 });
 
 paperHand.addEventListener("click", () => {
   machineHand = computerHand(randomHand());
-  paperCon(machineHand);
+  gameResult(machineHand);
 });
 
 scissorHand.addEventListener("click", () => {
   machineHand = computerHand(randomHand());
-  scissorCon(machineHand);
+  gameResult(machineHand);
 });
 
 reset.addEventListener("click", resetAll);
