@@ -1,3 +1,4 @@
+const optionBtn = document.querySelectorAll(".option", "button");
 const rockHand = document.getElementById("rock");
 const paperHand = document.getElementById("paper");
 const scissorHand = document.getElementById("scissor");
@@ -13,7 +14,6 @@ const playerLoses = document.getElementById("player-loses");
 const playerTies = document.getElementById("player-ties");
 const restore = document.getElementById("restore");
 
-let playerMove = [rockHand, paperHand, scissorHand];
 let playerScore = 0;
 let computerScore = 0;
 // let playerStats = {
@@ -55,12 +55,12 @@ const computerHand = (randomNum) => {
 
 let machineHand = computerHand(randomHand());
 
-const gameResult = (machine) => {
+const gameResult = (machine, playerhand) => {
   let result = "";
-  const yourChoiceP = document.createElement("p");
   const computerResP = document.createElement("p");
+  const yourChoiceP = document.createElement("p");
 
-  if (playerMove[0].id === "rock") {
+  if (playerhand === "Rock") {
     if (machine === "rock") {
       result = "its a tie";
       playerTies.textContent = `${(playerStats.tie += 1)}`;
@@ -73,7 +73,7 @@ const gameResult = (machine) => {
       pScore.innerHTML = `Player Score: ${(playerScore += 1)}`;
       playerWins.textContent = `${(playerStats.win += 1)}`;
     }
-  } else if (playerMove[1].id === "paper") {
+  } else if (playerhand === "Paper") {
     if (machine === "rock") {
       result = "you win";
       pScore.innerHTML = `Player Score: ${(playerScore += 1)}`;
@@ -86,7 +86,7 @@ const gameResult = (machine) => {
       cScore.innerHTML = `Computer Score: ${(computerScore += 1)}`;
       playerLoses.textContent = `${(playerStats.lose += 1)}`;
     }
-  } else if (playerMove[2].id === "scissor") {
+  } else if (playerhand === "Scissor") {
     if (machine === "rock") {
       result = "you lose";
       cScore.innerHTML = `Computer Score: ${(computerScore += 1)}`;
@@ -106,11 +106,10 @@ const gameResult = (machine) => {
   computerResP.textContent = `${machineHand}`;
   computerRes.innerHTML = "";
   computerRes.appendChild(computerResP);
-  yourChoiceP.textContent = "you pick Rock";
+  yourChoiceP.textContent = `you pick ${playerhand}`;
   yourChoice.innerHTML = "";
   yourChoice.appendChild(yourChoiceP);
   theDecision.textContent = `The computer pick ${machineHand}, ${result}`;
-  return result;
 };
 
 const resetAll = () => {
@@ -135,17 +134,17 @@ const restoreAll = () => {
 
 rockHand.addEventListener("click", () => {
   machineHand = computerHand(randomHand());
-  gameResult(machineHand);
+  gameResult(machineHand, "Rock");
 });
 
 paperHand.addEventListener("click", () => {
   machineHand = computerHand(randomHand());
-  gameResult(machineHand);
+  gameResult(machineHand, "Paper");
 });
 
 scissorHand.addEventListener("click", () => {
   machineHand = computerHand(randomHand());
-  gameResult(machineHand);
+  gameResult(machineHand, "Scissor");
 });
 
 reset.addEventListener("click", resetAll);
