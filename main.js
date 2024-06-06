@@ -66,34 +66,34 @@ const gameResult = (machine, playerhand) => {
       playerTies.textContent = `${(playerStats.tie += 1)}`;
     } else if (machine === "paper") {
       result = "you lose";
-      cScore.innerHTML = `Computer Score: ${(computerScore += 1)}`;
+      cScore.textContent = `${(computerScore += 1)}`;
       playerLoses.textContent = `${(playerStats.lose += 1)}`;
     } else {
       result = "you win";
-      pScore.innerHTML = `Player Score: ${(playerScore += 1)}`;
+      pScore.textContent = `${(playerScore += 1)}`;
       playerWins.textContent = `${(playerStats.win += 1)}`;
     }
   } else if (playerhand === "Paper") {
     if (machine === "rock") {
       result = "you win";
-      pScore.innerHTML = `Player Score: ${(playerScore += 1)}`;
+      pScore.textContent = `${(playerScore += 1)}`;
       playerWins.textContent = `${(playerStats.win += 1)}`;
     } else if (machine === "paper") {
       result = "its a tie";
       playerTies.textContent = `${(playerStats.tie += 1)}`;
     } else {
       result = "you lose";
-      cScore.innerHTML = `Computer Score: ${(computerScore += 1)}`;
+      cScore.textContent = `${(computerScore += 1)}`;
       playerLoses.textContent = `${(playerStats.lose += 1)}`;
     }
   } else if (playerhand === "Scissor") {
     if (machine === "rock") {
       result = "you lose";
-      cScore.innerHTML = `Computer Score: ${(computerScore += 1)}`;
+      cScore.textContent = `${(computerScore += 1)}`;
       playerLoses.textContent = `${(playerStats.lose += 1)}`;
     } else if (machine === "paper") {
       result = "you win";
-      pScore.innerHTML = `Player Score: ${(playerScore += 1)}`;
+      pScore.textContent = `${(playerScore += 1)}`;
       playerWins.textContent = `${(playerStats.win += 1)}`;
     } else {
       result = "its a tie";
@@ -116,8 +116,8 @@ const resetAll = () => {
   computerRes.innerHTML = "";
   yourChoice.innerHTML = "";
   theDecision.textContent = "";
-  pScore.innerHTML = `Computer Score: ${(computerScore = 0)}`;
-  cScore.innerHTML = `Player Score: ${(playerScore = 0)}`;
+  pScore.textContent = `${(computerScore = 0)}`;
+  cScore.textContent = `${(playerScore = 0)}`;
   computerScore = 0;
   playerScore = 0;
 };
