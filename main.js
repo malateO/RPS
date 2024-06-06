@@ -110,6 +110,14 @@ const gameResult = (machine, playerhand) => {
   yourChoice.innerHTML = "";
   yourChoice.appendChild(yourChoiceP);
   theDecision.innerHTML = `The computer pick ${machineHand}, ${result}`;
+
+  if (result === "you win") {
+    theDecision.style.color = "blue";
+  } else if (result === "you lose") {
+    theDecision.style.color = "red";
+  } else {
+    theDecision.style.color = "white";
+  }
 };
 
 const resetAll = () => {
