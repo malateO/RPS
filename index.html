@@ -10,17 +10,23 @@
   <body>
     <h3 class="h3__title">Rock Paper Scissor</h3>
     <div class="option__btn">
-      <button class="option" id="rock">Rock</button>
-      <button class="option" id="paper">Paper</button>
-      <button class="option" id="scissor">Scissor</button>
+      <button class="option" id="rock">
+        <img class="move-icon" src="assets/rock-emoji.png" alt="rock" />
+      </button>
+      <button class="option" id="paper">
+        <img class="move-icon" src="assets/paper-emoji.png" alt="paper" />
+      </button>
+      <button class="option" id="scissor">
+        <img class="move-icon" src="assets/scissors-emoji.png" alt="scissor" />
+      </button>
     </div>
     <div class="your__choice"></div>
     <div class="computer__response"></div>
     <p class="result"></p>
 
     <div class="score-board" id="score">
-      <p class="player-score" id="pscore">Player Score:</p>
-      <p class="computer-score" id="cscore">Computer Score:</p>
+      <p class="player-score" id="pscore">Player Score: 0</p>
+      <p class="computer-score" id="cscore">Computer Score: 0</p>
       <button class="reset-board-score" id="reset">RESET</button>
     </div>
 

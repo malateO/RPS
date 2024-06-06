@@ -13,6 +13,8 @@ body {
   flex-wrap: wrap;
   border: 1px solid black;
   position: relative;
+  background-color: rgb(25, 25, 25);
+  color: white;
 }
 
 button {
@@ -39,11 +41,18 @@ h3 {
 }
 
 .computer__response {
-  text-align: center;
-  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 50%;
   width: 50px;
   height: 50px;
   margin-bottom: 0;
+}
+
+.computer-res {
+  height: 35px;
 }
 
 .score-board {
@@ -55,9 +64,11 @@ h3 {
 .option {
   width: 130px;
   height: 130px;
-  background-color: rgba(10, 1, 1, 0.6);
+  background-color: rgb(0, 0, 0);
+  border: 1px solid rgb(255, 255, 255);
   border-radius: 50%;
   box-shadow: 2px 2px 2px;
+  cursor: pointer;
 }
 
 .option__btn {
@@ -65,9 +76,24 @@ h3 {
   gap: 5rem;
 }
 
+.move-icon {
+  height: 80px;
+}
+
 .result {
   font-family: Arial, Helvetica, sans-serif;
   color: blue;
+}
+
+.reset-board-score {
+  background-color: rgb(14, 173, 56);
+  border: 1px solid white;
+  cursor: pointer;
+  padding: 15px;
+}
+
+.player-stat {
+  display: none;
 }
 
 h4 {
@@ -80,4 +106,5 @@ h4 {
   border: none;
   border-radius: 7px;
   padding: 5px;
+  cursor: pointer;
 }

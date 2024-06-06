@@ -48,7 +48,7 @@ const computerHand = (randomNum) => {
   } else if (randomNum === 2) {
     machineHand = "paper";
   } else {
-    machineHand = "scissor";
+    machineHand = "scissors";
   }
   return machineHand;
 };
@@ -103,21 +103,21 @@ const gameResult = (machine, playerhand) => {
 
   localStorage.setItem("playerStat", JSON.stringify(playerStats));
 
-  computerResP.textContent = `${machineHand}`;
+  computerResP.innerHTML = `<img class="cmove-icon computer-res" src="assets/${machineHand}-emoji.png" alt="scissor" />`;
   computerRes.innerHTML = "";
   computerRes.appendChild(computerResP);
   yourChoiceP.textContent = `you pick ${playerhand}`;
   yourChoice.innerHTML = "";
   yourChoice.appendChild(yourChoiceP);
-  theDecision.textContent = `The computer pick ${machineHand}, ${result}`;
+  theDecision.innerHTML = `The computer pick ${machineHand}, ${result}`;
 };
 
 const resetAll = () => {
   computerRes.innerHTML = "";
   yourChoice.innerHTML = "";
   theDecision.textContent = "";
-  cScore.innerHTML = "Player Score:";
-  pScore.innerHTML = "Computer Score:";
+  pScore.innerHTML = `Computer Score: ${(computerScore = 0)}`;
+  cScore.innerHTML = `Player Score: ${(playerScore = 0)}`;
   computerScore = 0;
   playerScore = 0;
 };
