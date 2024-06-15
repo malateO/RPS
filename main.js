@@ -13,6 +13,7 @@ const playerWins = document.getElementById("player-wins");
 const playerLoses = document.getElementById("player-loses");
 const playerTies = document.getElementById("player-ties");
 const restore = document.getElementById("restore");
+const auto = document.getElementById("auto-play");
 
 let playerScore = 0;
 let computerScore = 0;
@@ -44,16 +45,16 @@ const randomHand = () => Math.floor(Math.random() * 3) + 1;
 const computerHand = (randomNum) => {
   let machineHand = "";
   if (randomNum === 1) {
-    machineHand = "rock";
+    machineHand = "Rock";
   } else if (randomNum === 2) {
-    machineHand = "paper";
+    machineHand = "Paper";
   } else {
-    machineHand = "scissors";
+    machineHand = "Scissor";
   }
   return machineHand;
 };
 
-let machineHand = computerHand(randomHand());
+// let machineHand = computerHand(randomHand());
 
 const gameResult = (machine, playerhand) => {
   let result = "";
@@ -61,10 +62,10 @@ const gameResult = (machine, playerhand) => {
   const yourChoiceP = document.createElement("p");
 
   if (playerhand === "Rock") {
-    if (machine === "rock") {
+    if (machine === "Rock") {
       result = "its a tie";
       playerTies.textContent = `${(playerStats.tie += 1)}`;
-    } else if (machine === "paper") {
+    } else if (machine === "Paper") {
       result = "you lose";
       cScore.textContent = `${(computerScore += 1)}`;
       playerLoses.textContent = `${(playerStats.lose += 1)}`;
@@ -74,11 +75,11 @@ const gameResult = (machine, playerhand) => {
       playerWins.textContent = `${(playerStats.win += 1)}`;
     }
   } else if (playerhand === "Paper") {
-    if (machine === "rock") {
+    if (machine === "Rock") {
       result = "you win";
       pScore.textContent = `${(playerScore += 1)}`;
       playerWins.textContent = `${(playerStats.win += 1)}`;
-    } else if (machine === "paper") {
+    } else if (machine === "Paper") {
       result = "its a tie";
       playerTies.textContent = `${(playerStats.tie += 1)}`;
     } else {
@@ -87,11 +88,11 @@ const gameResult = (machine, playerhand) => {
       playerLoses.textContent = `${(playerStats.lose += 1)}`;
     }
   } else if (playerhand === "Scissor") {
-    if (machine === "rock") {
+    if (machine === "Rock") {
       result = "you lose";
       cScore.textContent = `${(computerScore += 1)}`;
       playerLoses.textContent = `${(playerStats.lose += 1)}`;
-    } else if (machine === "paper") {
+    } else if (machine === "Paper") {
       result = "you win";
       pScore.textContent = `${(playerScore += 1)}`;
       playerWins.textContent = `${(playerStats.win += 1)}`;
@@ -139,6 +140,16 @@ const restoreAll = () => {
   playerLoses.textContent = `${playerStats.lose}`;
   localStorage.removeItem("playerStat");
 };
+
+const autoPlay = () => {
+  setInterval(() => {
+    machineHand = computerHand(randomHand());
+    const playerMove = computerHand(randomHand());
+    gameResult(machineHand, playerMove);
+  }, 2000);
+};
+
+auto.addEventListener("click", autoPlay);
 
 rockHand.addEventListener("click", () => {
   machineHand = computerHand(randomHand());
