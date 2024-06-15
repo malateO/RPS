@@ -108,3 +108,12 @@ h4 {
   padding: 5px;
   cursor: pointer;
 }
+
+.auto-play-btn {
+  padding: 10px 0;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  color: antiquewhite;
+  background-color: rgba(245, 26, 26, 0.612);
+}
