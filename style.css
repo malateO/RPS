@@ -116,4 +116,5 @@ h4 {
   text-align: center;
   color: antiquewhite;
   background-color: rgba(245, 26, 26, 0.612);
+  cursor: pointer;
 }

@@ -104,7 +104,7 @@ const gameResult = (machine, playerhand) => {
 
   localStorage.setItem("playerStat", JSON.stringify(playerStats));
 
-  computerResP.innerHTML = `<img class="cmove-icon computer-res" src="assets/${machineHand}-emoji.png" alt="scissor" />`;
+  computerResP.innerHTML = `<img class="cmove-icon computer-res" src="assets/${machineHand}-emoji.png" />`;
   computerRes.innerHTML = "";
   computerRes.appendChild(computerResP);
   yourChoiceP.textContent = `you pick ${playerhand}`;
@@ -141,12 +141,21 @@ const restoreAll = () => {
   localStorage.removeItem("playerStat");
 };
 
+let autoPlayState = false;
+let autoState;
+
 const autoPlay = () => {
-  setInterval(() => {
-    machineHand = computerHand(randomHand());
-    const playerMove = computerHand(randomHand());
-    gameResult(machineHand, playerMove);
-  }, 2000);
+  if (!autoPlayState) {
+    autoState = setInterval(() => {
+      machineHand = computerHand(randomHand());
+      const playerMove = computerHand(randomHand());
+      gameResult(machineHand, playerMove);
+    }, 1000);
+    autoPlayState = true;
+  } else {
+    clearInterval(autoState);
+    autoPlayState = false;
+  }
 };
 
 auto.addEventListener("click", autoPlay);
