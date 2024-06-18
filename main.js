@@ -152,9 +152,12 @@ const autoPlay = () => {
       gameResult(machineHand, playerMove);
     }, 1000);
     autoPlayState = true;
+    auto.innerText = "STOP";
   } else {
     clearInterval(autoState);
     autoPlayState = false;
+    auto.innerText = "AUTO PLAY";
+    resetAll();
   }
 };
 
